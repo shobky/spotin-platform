@@ -1,0 +1,13 @@
+@font-face {
+    font-family: montserrat-black;
+    src: url('./MontserratAlternates-Black.otf');
+}
+
+@font-face {
+    font-family: montserrat-light;
+    src: url('./MontserratAlternates-Light.otf');
+}
+@font-face {
+    font-family: montserrat-regular;
+    src: url('./Montserrat-Regular.otf');
+}

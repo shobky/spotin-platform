@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Routes, Route } from 'react-router-dom';
 
 import PrivateRoutes from "./auth/PrivateRoute";
@@ -7,10 +7,10 @@ import PrivateRoutes from "./auth/PrivateRoute";
 import Home from './pages/Home';
 import SignUp from "./auth/SignUp";
 import Login from "./auth/Login";
-import Pos from "./POS/Pos";
 import Profile from "./pages/Profile";
-import { useAuth } from './contexts/AuthContext';
 import AddProducts from './components/AddProducts';
+import PosContainer from './POS/PosContainer';
+import ChooseUser from './POS/ChooseUser';
 
 
 const RoutesComponent = () => {
@@ -21,9 +21,11 @@ const RoutesComponent = () => {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route element={<PrivateRoutes />}>
-                <Route path="pos" element={<Pos />} />
+                <Route path="pos" element={<PosContainer />} />
                 <Route path="addProducts" element={<AddProducts />} />
                 <Route path={`your-profile`} element={<Profile />} />
+                <Route path={`select-a-user`} element={<ChooseUser />} />
+
             </Route>
         </Routes>
     )

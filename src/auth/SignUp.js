@@ -8,6 +8,7 @@ import { RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
 import Loading from '../assets/imgs/loading-gifs-tenor.gif'
 
 export default function Signup() {
+    const nameRef = useRef()
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
@@ -40,7 +41,7 @@ export default function Signup() {
 
         setError("")
         setLoading(true)
-        await signup(emailRef.current.value, passwordRef.current.value)
+        await signup(emailRef.current.value, passwordRef.current.value, nameRef.current.value)
             .then((userCredential) => {
                 // Signed in 
                 navigate('/')
@@ -74,8 +75,13 @@ export default function Signup() {
                     }
                 </div>
                 <form onSubmit={handleSubmit} className="auth_form">
-                    <label className="auth_label">Email </label>
-                    <input className="sign-up_auth_input auth_input" ref={emailRef} required name="email" type="email" />
+                    <div className="nameandemaildiv" >
+                        <div><label className="auth_label">Name </label>
+                            <input className="sign-up_auth_input auth_input auth_name-input" ref={nameRef} required name="name" type="text" /></div>
+
+                        <div><label className="auth_label">Email </label>
+                            <input className="sign-up_auth_input auth_input" ref={emailRef} required name="email" type="email" /></div>
+                    </div>
                     <label className="auth_label"> Password </label>
                     <div style={{ position: "relative" }}>
                         <input className="sign-up_auth_input auth_input" ref={passwordRef} required name="new-password" type={showPassword.password} />

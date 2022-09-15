@@ -9,6 +9,7 @@ const AddProducts = () => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [image, setImage] = useState(null)
+    const qty = 1
 
     const handleProductImage = (e) => {
 
@@ -42,7 +43,8 @@ const AddProducts = () => {
                 const url = await getDownloadURL(uploadTask.snapshot.ref)
                 const docRef = await addDoc(collection(db, "pos"), {
                     name,
-                    price: Number(price),
+                    qty,
+                    price: Number(price) ,
                     url
                 });
                 console.log("Document written with ID: ", docRef.id);

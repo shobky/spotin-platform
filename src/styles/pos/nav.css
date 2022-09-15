@@ -1,0 +1,90 @@
+@media (max-width:950px) {
+    .pos_nav {
+        background-color: #ffffff;
+        width: 100vw;
+        height: 60px;
+        position: fixed;
+        box-shadow: 0 0 10px 1px rgb(214, 214, 214);
+        display: none;
+    }
+
+    .pos_home-btn-contain {
+        display: none;
+
+    }
+
+  
+}
+
+@media (min-width:951px) {
+    .pos_nav {
+        background-color: #ffffff;
+        width: 75px;
+        height: 100vh;
+        position: fixed;
+        box-shadow: 0 0 10px 1px rgb(214, 214, 214);
+
+    }
+
+    .pos_home-btn-contain {
+        background-color: #ffffff;
+        position: absolute;
+        top: 75px;
+        left: 10px;
+        width: 65px;
+        padding: 10px 20px 10px 10px;
+        border-radius: 15px;
+        box-shadow: -5px 2px 7px -2px rgb(207, 207, 207);
+
+    }
+
+
+}
+
+.pos_NavLink {
+    font-size: 22px;
+    color: black;
+}
+
+
+
+.pos_home-btn-contain:hover {
+    cursor: pointer;
+
+}
+
+.pos_home-link {
+    text-align: center;
+    font-size: 35px;
+    color: #000000;
+    background-color: rgb(124, 181, 255);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.pos_home-link:hover {
+    font-size: 36px;
+    color: rgb(88, 88, 88)
+}
+
+.pos_link-group {
+    margin-top: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: montserrat-light;
+    row-gap: 80px;
+}
+
+.pos_NavLink:hover {
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: gray;
+
+
+}
+
+.pos_logo{
+    width: 10px;
+}
