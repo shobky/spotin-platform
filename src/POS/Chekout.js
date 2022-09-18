@@ -1,35 +1,30 @@
 import { useEffect, useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import '../styles/pos/checkout.css'
 
 const Chekout = ({ cart, onTotalPrice, ticketNum, onChangeTktNum }) => {
-    const [totalPrice, setTotalPrice] = useState();
-    const isChecked = true
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [isChecked, setIsChecked] = useState(false);
+
 
     const ticketNumInput = (e) => {
+        setIsChecked(true)
         onChangeTktNum(e.target.value)
     }
 
     const getTotal = () => {
         let allPrices = [];
-        if (isChecked) {
-            cart?.map((products) =>
-                allPrices.push(products.item.price * products.qty)
-            )
-            setTotalPrice(allPrices.reduce((a, b) => a + b, 0) + (ticketNum * 10))
+        cart?.map((products) =>
+            allPrices.push(products.item.price * products.qty)
+        )
+        setTotalPrice(allPrices.reduce((a, b) => a + b, 0) + ticketNum * 10)
 
-        } else {
-            cart?.map((products) =>
-                allPrices.push(products.item.price * products.qty)
-            )
-            setTotalPrice(allPrices.reduce((a, b) => a + b, 0))
-
-        }
         onTotalPrice(totalPrice, ticketNum)
     }
 
     useEffect(() => {
         getTotal()
-    }, [cart, ticketNum])
+    }, [cart, totalPrice])
 
 
     return (

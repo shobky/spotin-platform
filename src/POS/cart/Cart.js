@@ -31,6 +31,7 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
     const [orderId, setOrderId] = useState(`order #1`)
     const [orderName, setOrderName] = useState("")
 
+
     // const [orderStatus, setOrderStatus] = useState(false)
 
 
@@ -97,14 +98,14 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
         setTkts(numOfTkts)
     }
 
-    console.log()
     const placeOrder = async () => {
+        console.log(totalPrice, ticketNum * 10)
         setLoadingOrder(true)
         const docRef = doc(db, `open-orders`, orderId);
         if ((
             (orderTaker.name || orderName)
             &&
-            (totalPrice > 0 || ticketNum)
+            ((totalPrice ?? totalPrice > 0) || ticketNum)
         )) {
             showCart()
             await setDoc(docRef, {
@@ -127,6 +128,7 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
             setLoadingOrder(false)
             startAnimation()
             setTicketNum(0)
+            setTotalPrice(0)
             onSelectedUser({})
             document.getElementById("add-name-form").reset()
             setOrderName("")

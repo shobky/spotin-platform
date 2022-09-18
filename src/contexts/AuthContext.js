@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
         getUserInfo,
         onSelectedUser,
         orderTaker,
-        cartId
+        cartId,
     }
 
     return (
