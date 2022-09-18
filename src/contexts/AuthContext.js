@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react"
 import { auth, db } from "../firebase/Config"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import { doc, setDoc, } from "firebase/firestore";
-
+import { uuidv4 } from "@firebase/util";
 
 
 
@@ -61,6 +61,14 @@ export const AuthProvider = ({ children }) => {
         }
 
     }
+
+    const makeUser = async (name) => {
+        await setDoc(doc(db, "user-profile", name), {
+            name,
+            uid: uuidv4().slice(-5),
+            // url: currentUser.url
+        })
+    }
     useEffect(() => {
         getUserInfo()
     })
@@ -74,6 +82,7 @@ export const AuthProvider = ({ children }) => {
         onSelectedUser,
         orderTaker,
         cartId,
+        makeUser
     }
 
     return (

@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/AuthContext"
 
 const User = ({ onChoosingState, Choosing, showCart, getOrderName }) => {
 
-    const orderTaker = useAuth()
+    const { orderTaker } = useAuth()
 
     const putOrderName = (e) => {
         getOrderName(e.target.value)
@@ -24,10 +24,10 @@ const User = ({ onChoosingState, Choosing, showCart, getOrderName }) => {
                     }
                 </p>
                 {
-                    orderTaker?.orderTaker.name ? (
+                    orderTaker?.name ? (
                         <div className="cart_user-select-container">
-                            <p className="cart_order-for">{orderTaker.orderTaker.name}</p>
-                            <p className="cart_order-for">#{orderTaker.orderTaker.uid}</p>
+                            <p className="cart_order-for">{orderTaker.name}</p>
+                            <p className="cart_order-for">#{orderTaker.uid}</p>
                         </div>
                     ) : <form onSubmit={(e) => submitInput(e)} id='add-name-form'>
                         <input id="orderName_input" onChange={(e) => putOrderName(e)} className='cart_user-name-input' type="text" placeholder='order name' />

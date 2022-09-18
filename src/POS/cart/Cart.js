@@ -14,7 +14,7 @@ import { MdDelete } from 'react-icons/md';
 import '../../components/placementAnimation/orderAni.css'
 
 const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimation }) => {
-    const { orderTaker, onSelectedUser, cartId } = useAuth()
+    const { orderTaker, onSelectedUser, cartId, makeUser } = useAuth()
     const query = collection(db, `carts/cart${cartId}/Products`)
     const [cart, loading] = useCollectionData(query)
     const orderQue = collection(db, `open-orders`)
@@ -132,6 +132,8 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
             onSelectedUser({})
             document.getElementById("add-name-form").reset()
             setOrderName("")
+            makeUser(orderName)
+
 
 
         } else {

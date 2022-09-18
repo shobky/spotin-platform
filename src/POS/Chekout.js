@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import '../styles/pos/checkout.css'
 
 const Chekout = ({ cart, onTotalPrice, ticketNum, onChangeTktNum }) => {
