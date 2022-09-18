@@ -3,11 +3,11 @@ import '../styles/pos/checkout.css'
 
 const Chekout = ({ cart, onTotalPrice, ticketNum, onChangeTktNum }) => {
     const [totalPrice, setTotalPrice] = useState(0);
-    const [isChecked, setIsChecked] = useState(false);
+    // const [isChecked, setIsChecked] = useState(false);
 
 
     const ticketNumInput = (e) => {
-        setIsChecked(true)
+        // setIsChecked(true)
         onChangeTktNum(e.target.value)
     }
 
