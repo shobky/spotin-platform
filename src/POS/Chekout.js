@@ -24,7 +24,7 @@ const Chekout = ({ cart, onTotalPrice, ticketNum, onChangeTktNum }) => {
 
     useEffect(() => {
         getTotal()
-    }, [cart, totalPrice])
+    }, [cart, totalPrice, ticketNum])
 
 
     return (
