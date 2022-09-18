@@ -24,7 +24,7 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
     const [date, setDate] = useState('')
     const [time, setTime] = useState([])
     const [fullDate, setFullDate] = useState('')
-    const [totalPrice, setTotalPrice] = useState()
+    const [totalPrice, setTotalPrice] = useState(0)
     const [tkts, setTkts] = useState()
     const [ticketNum, setTicketNum] = useState(0)
     const [loadingOrder, setLoadingOrder] = useState(false)
@@ -104,7 +104,7 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
         if ((
             (orderTaker.name || orderName)
             &&
-            (totalPrice || ticketNum)
+            (totalPrice > 0 || ticketNum)
         )) {
             showCart()
             await setDoc(docRef, {
