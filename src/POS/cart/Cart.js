@@ -122,6 +122,7 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
                     id: orderTaker.uid ?? ""
                 }
             });
+            makeUser(orderName)
             cart?.map(async (cartItem) => {
                 await deleteDoc(doc(db, `carts/cart${cartId}/Products/${cartItem.item.name}`));
             })
@@ -132,7 +133,6 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
             onSelectedUser({})
             document.getElementById("add-name-form").reset()
             setOrderName("")
-            makeUser(orderName)
 
 
 
