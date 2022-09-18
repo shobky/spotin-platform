@@ -1,4 +1,5 @@
 import '../styles/pos/nav.css'
+import { Link } from 'react-router-dom'
 import { IoHome } from "react-icons/io5"
 // import logo from '../assets/imgs/logo.png'
 
@@ -9,8 +10,8 @@ const Nav = () => {
                 <p className='pos_home-link'><IoHome /></p>
             </div>
             <div className='pos_link-group'>
-                <p className='pos_NavLink'>Put</p>
-                <p className='pos_NavLink'>Get</p>
+                <Link to="/pos" className='pos_NavLink'>Put</Link>
+                <Link to="/pos/open-orders" className='pos_NavLink'>Get</Link>
                 <p className='pos_NavLink'>Add</p>
             </div>
         </div>

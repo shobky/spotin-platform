@@ -16,15 +16,15 @@ export const AuthProvider = ({ children }) => {
 
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(false)
-    const [orderTaker, setOrderTaker] = useState({ name: "Anonymys" })
+    const [orderTaker, setOrderTaker] = useState({})
     const cartId = orderTaker.name
 
 
-    const signup = (email, password, name) => {
-        updateProfile(auth.currentUser, {
+    const signup = async (email, password, name) => {
+        await createUserWithEmailAndPassword(auth, email, password)
+        return updateProfile(auth.currentUser, {
             displayName: name
         })
-        return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const login = (email, password) => {
@@ -37,7 +37,6 @@ export const AuthProvider = ({ children }) => {
 
     const onSelectedUser = (slectedUser) => {
         setOrderTaker(slectedUser)
-        console.log(orderTaker)
     }
 
 
@@ -55,7 +54,7 @@ export const AuthProvider = ({ children }) => {
         if (currentUser) {
             await setDoc(doc(db, "user-profile", currentUser.email), {
                 email: currentUser.email,
-                name: "Ahned shobky",
+                name: currentUser.displayName,
                 uid: currentUser.email[3] + currentUser.uid[0] + currentUser.uid[15] + currentUser.uid[5] + currentUser.uid[13],
                 // url: currentUser.url
             })

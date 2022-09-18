@@ -7,8 +7,7 @@ import CartItem from './CartItem';
 import '../../styles/pos/cart.css'
 import Chekout from '../Chekout';
 import { useEffect, useState } from 'react';
-import User from '../User';
-import { uuidv4 } from '@firebase/util';
+import User from '../selectUsers/User';
 import '../../styles/pos/cart.css'
 import emptyCart from '../../assets/imgs/empty-cart.png'
 import { MdDelete } from 'react-icons/md';
@@ -18,40 +17,71 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
     const { orderTaker, onSelectedUser, cartId } = useAuth()
     const query = collection(db, `carts/cart${cartId}/Products`)
     const [cart, loading] = useCollectionData(query)
+    const orderQue = collection(db, `open-orders`)
+    const [openOrders, orderLoadign] = useCollectionData(orderQue)
+    const closedOrderQ = collection(db, `closed-orders`)
+    const [ClosedOrders] = useCollectionData(closedOrderQ)
     const [date, setDate] = useState('')
+    const [time, setTime] = useState([])
+    const [fullDate, setFullDate] = useState('')
     const [totalPrice, setTotalPrice] = useState()
     const [tkts, setTkts] = useState()
     const [ticketNum, setTicketNum] = useState(0)
     const [loadingOrder, setLoadingOrder] = useState(false)
-    const [orderId, setOrderId] = useState()
+    const [orderId, setOrderId] = useState(`order #1`)
+    const [orderName, setOrderName] = useState("")
+
     // const [orderStatus, setOrderStatus] = useState(false)
 
 
     useEffect(() => {
         const createOrderId = () => {
-            setOrderId("Order #" + uuidv4().slice(25))
+            if (!orderLoadign) {
+                setOrderId(`Order #${(openOrders?.length + 1) + (ClosedOrders?.length > 0 ? ClosedOrders?.length + 1 : ClosedOrders?.length)}`)
+            }
         }
         createOrderId()
+    }, [loadingOrder, orderLoadign])
 
-    }, [loadingOrder])
 
 
     useEffect(() => {
+        const getFullDate = () => {
+            const currentdate = new Date();
+            let fullDate = currentdate.getDate() + "/"
+                + (currentdate.getMonth() + 1) + "/"
+                + (currentdate.getFullYear()) + '-'
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ':'
+                + currentdate.getSeconds()
+            setFullDate(fullDate)
+        }
         const getdate = () => {
             const currentdate = new Date();
             let datetime = currentdate.getDate() + "/"
-                + (currentdate.getMonth() + 1) + "/"
-                + currentdate.getFullYear() + " - "
-                + currentdate.getHours() + ":"
-                + currentdate.getMinutes() + ":"
-                + currentdate.getSeconds();
+                + (currentdate.getMonth() + 1)
             setDate(datetime)
         }
+
+        const getTime = () => {
+            const currentdate = new Date();
+            let time =
+                [currentdate.getHours(),
+                currentdate.getMinutes()]
+            setTime(time)
+
+        }
+        getTime()
         getdate()
-    }, [date])
+        getFullDate()
+    }, [])
 
     const onChangeTktNum = (num) => {
         setTicketNum(num)
+    }
+
+    const getOrderName = (name) => {
+        setOrderName(name)
     }
 
     const clearCart = () => {
@@ -59,35 +89,51 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
             await deleteDoc(doc(db, `carts/cart${cartId}/Products/${cartItem.item.name}`));
         })
         setTicketNum(0)
-        onSelectedUser({ name: 'Anonymos' })
+        onSelectedUser({})
     }
 
+    const onTotalPrice = (price, numOfTkts) => {
+        setTotalPrice(price)
+        setTkts(numOfTkts)
+    }
 
+    console.log()
     const placeOrder = async () => {
+        setLoadingOrder(true)
         const docRef = doc(db, `open-orders`, orderId);
-        if (totalPrice > 9) {
-            setLoadingOrder(true)
+        if ((
+            (orderTaker.name || orderName)
+            &&
+            (totalPrice >= 10 || ticketNum)
+        )) {
             showCart()
             await setDoc(docRef, {
-                orderPlacedAt: date,
+                id: orderId,
+                status: "open",
+                fullDate: fullDate,
+                date: date,
+                time: time,
                 cart,
                 totalPrice,
                 TiketSold: tkts,
                 user: {
-                    name: orderTaker.name,
-                    id: orderTaker.id ?? "anonymos"
+                    name: orderTaker.name ?? orderName,
+                    id: orderTaker.uid ?? ""
                 }
             });
-            setLoadingOrder(false)
             cart?.map(async (cartItem) => {
                 await deleteDoc(doc(db, `carts/cart${cartId}/Products/${cartItem.item.name}`));
             })
+            setLoadingOrder(false)
             startAnimation()
             setTicketNum(0)
-            onSelectedUser({ name: 'Anonymos' })
-            setLoadingOrder(false)
+            onSelectedUser({})
+            document.getElementById("add-name-form").reset()
+            setOrderName("")
+
 
         } else {
+            setLoadingOrder(false)
             const emptyCartImg = document.getElementById("emptyCartImg");
             const emptyCartTxt = document.getElementById("emptyCartTxt");
 
@@ -111,19 +157,14 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
                 emptyCartImg.style.opacity = "20%"
 
 
-            }, 450);
+            }, 350);
 
-            // alert("put in cart")
         }
 
     }
 
 
 
-    const onTotalPrice = (price, numOfTkts) => {
-        setTotalPrice(price)
-        setTkts(numOfTkts)
-    }
 
     return (
         <>
@@ -131,11 +172,11 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
                 <div id='cartContainer' className=' cart-container-shown cart-container'>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <h2 className='cart_orderid'>{orderId}</h2>
-                        <button onClick={clearCart} className=" cart_action-btn cart-item_remove-btn"><MdDelete style={{ fontSize: "25px", marginRight: "15px", color: "red" }} /></button>
+                        <button onClick={clearCart} className=" cart_action-btn cart-item_remove-btn"><MdDelete style={{ fontSize: "30px", marginRight: "35px", marginTop: "14px", color: "black" }} /></button>
                     </div>
 
-                    <p className='cart_order-date'>{date}</p>
-                    <User showCart={showCart} Choosing={Choosing} onChoosingState={onChoosingState} />
+                    <p className='cart_order-date'>{fullDate}</p>
+                    <User getOrderName={getOrderName} showCart={showCart} Choosing={Choosing} onChoosingState={onChoosingState} />
                     <div className='cart_cart-item-contaienr'>
                         {
                             cart.length > 0 ?

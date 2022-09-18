@@ -9,7 +9,6 @@ const Chekout = ({ cart, onTotalPrice, ticketNum, onChangeTktNum }) => {
         onChangeTktNum(e.target.value)
     }
 
-
     const getTotal = () => {
         let allPrices = [];
         if (isChecked) {
@@ -26,23 +25,23 @@ const Chekout = ({ cart, onTotalPrice, ticketNum, onChangeTktNum }) => {
 
         }
         onTotalPrice(totalPrice, ticketNum)
-
-
-
     }
+
     useEffect(() => {
         getTotal()
-    })
+    }, [cart, ticketNum])
+
+
     return (
         <div>
-            <form className='checkout_form'>
+            <div className='checkout_form'>
                 <label className="chekcout_label">Number of Tickets :
                     <input value={ticketNum} id='tktNum' onChange={(e) => ticketNumInput(e)} className="checkout_ticket-num" type="number" />
                 </label>
-            </form>
+            </div>
             <div className='cart-recep-item'>
-                {cart?.map((products) => (
-                    <p >{products.qty}x {products.item.name} </p>
+                {cart?.map((products, index) => (
+                    <p key={index} >{products.qty}x {products.item.name} </p>
                 ))}
                 <p>{ticketNum > 0 ?
                     ticketNum > 1 ? `${ticketNum}x tickets ${ticketNum * 10}` : `${ticketNum}x ticket ${ticketNum * 10}`

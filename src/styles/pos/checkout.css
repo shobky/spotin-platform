@@ -5,6 +5,7 @@
 
 .chekcout_label {
     font-size: 18px;
+    margin-top: -10px;
     display: flex;
 }
 
@@ -39,21 +40,22 @@
 
 }
 
-@media (min-width:750px) {
+@media (min-width:651px) {
     .cart-recep-item {
         font-size: 14px;
         margin-left: 30px;
         overflow-y: scroll;
-        height: 25vh;
+        height: 12vh;
+        margin-bottom: 4vh;
     }
 }
 
-@media (max-width:750px) {
+@media (max-width:650px) {
     .cart-recep-item {
         font-size: 14px;
         margin-left: 30px;
         overflow-y: scroll;
-        height: 18vh ;
+        height: 16vh ;
         margin-bottom: 20px;
         
     }

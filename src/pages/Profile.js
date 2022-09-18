@@ -1,6 +1,7 @@
 import { useAuth } from '../contexts/AuthContext';
 const Profile = () => {
     const currentUser = useAuth();
+    console.log(currentUser)
     return (
         <div>
             <p> {currentUser.currentUser.uid} </p>

@@ -1,0 +1,132 @@
+@media (min-width:750px) {
+    .recep-header {
+        font-size: 25px !important;
+    }
+
+    .recep_call-to-action-btns {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 40vw 0 40vw;
+
+    }
+
+}
+
+.recep-header {
+    margin: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5vh;
+}
+
+.recep_back-icon {
+    font-size: 30px;
+    color: black;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    left: 25px;
+}
+
+.recep_user {
+    margin-left: 25px;
+    font-size: 15px;
+    width: 200px;
+    overflow: hidden;
+}
+
+.recep_cart {
+    margin-left: 25px;
+    font-size: 15px;
+}
+
+.recep_item-container {
+    font-size: 14px;
+}
+
+.recep_checkout_total-price {
+    text-align: center;
+    margin-top: 7vh;
+    font-size: 40px;
+}
+
+@media (max-width:750px) {
+    .recep_call-to-action-btns {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 20vw 0 20vw;
+
+
+    }
+}
+
+
+.recep_checkout-btn {
+    border: none;
+    font-size: 25px;
+    background-color: rgb(0, 255, 85);
+    height: 50px;
+    border-radius: 25px;
+    font-family: sans-serif;
+    font-weight: bolder;
+    margin-bottom: 5vh;
+
+}
+
+.recep_checkout-btn:active {
+    border: none;
+    font-size: 26px;
+    background-color: rgb(51, 233, 111);
+    height: 52px;
+    border-radius: 25px;
+    font-family: sans-serif;
+    font-weight: bolder;
+
+}
+
+.open-recep {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(0, 255, 106);
+    position: relative;
+    left: -3px;
+}
+
+.closed-recep {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: rgb(255, 0, 0);
+    position: relative;
+    bottom: 2px;
+    left: -3px;
+}
+
+.recep_cancel-btn {
+    border: none;
+    font-size: 25px;
+    background-color: rgb(255, 0, 0);
+    height: 50px;
+    color: white;
+    border-radius: 25px;
+    font-family: sans-serif;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.recep_reopen-btn {
+    border: none;
+    font-size: 25px;
+    background-color: rgb(65, 154, 255);
+    height: 50px;
+    color: white;
+    border-radius: 25px;
+    font-family: sans-serif;
+    font-weight: bolder;
+    margin-bottom: 5vh;
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/pos/product.css'
+import '../../styles/pos/product.css'
 
 const Product = ({ product, onAddToCart }) => {
 

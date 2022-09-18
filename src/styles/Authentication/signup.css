@@ -84,15 +84,8 @@
     color: rgb(0, 0, 0);
 }
 
-.nameandemaildiv {
-    display: flex;
-    margin-top: 25px;
-}
-.auth_name-input{
-width: 15vw !important;
-}
- .auth_input {
-    height: 50px;
+.auth_input {
+    height: 45px;
     padding: 5px;
     font-size: 22px;
     border: 1px solid rgb(207, 198, 198);

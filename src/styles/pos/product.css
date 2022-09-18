@@ -3,13 +3,26 @@
         text-align: center;
         font-size: 30px;
     }
+
+    .pos_product-container:hover .pos_product-name {
+        font-size: 32px;
+
+    }
 }
+
 @media (max-width:950px) {
     .pos_product-name {
         text-align: center;
         font-size: 24px;
     }
+
+    .pos_product-container:hover .pos_product-name {
+        font-size: 26px;
+
+    }
+
 }
+
 .pos_product-img {
     max-width: 150px;
     max-height: 150px;
@@ -18,7 +31,7 @@
 
 .pos_product-container {
     margin: 2px;
-    background-color: rgb(94, 177, 255);
+    background-color: #f58b28;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -33,10 +46,6 @@
     cursor: pointer;
 }
 
-.pos_product-container:hover .pos_product-name {
-    font-size: 36px;
-
-}
 
 .pos_product-container:active {
     background-color: rgb(58, 255, 147);

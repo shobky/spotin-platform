@@ -7,22 +7,30 @@ import { db } from '../firebase/Config';
 import { useAuth } from '../contexts/AuthContext';
 import Nav from './Nav';
 import '../styles/pos/pos.css'
-import Products from './Products';
+import Products from './products/Products';
 import Loading from '../components/loadingAnimaitno/Loading';
-import { TbReceiptOff, TbReceipt } from 'react-icons/tb'
-const ChooseUser = React.lazy(() => import("./ChooseUser"));
+import { TbArrowBack } from 'react-icons/tb'
+import { FaReceipt } from 'react-icons/fa'
+import { MdOutlineShoppingCart, MdOutlineRemoveShoppingCart } from 'react-icons/md'
+import { IoPersonAddSharp } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
+import { VscCheck } from 'react-icons/vsc'
+const ChooseUser = React.lazy(() => import("./selectUsers/ChooseUser"));
 const Cart = React.lazy(() => import("./cart/Cart"));
 
 // import ChooseUser from './ChooseUser';
 
 const PosContainer = () => {
 
-    const AdminId = "9S1uStIw70RBSfJ8Dl5sdCDh9ND2"
-    const { currentUser, cartId } = useAuth()
+    const { cartId } = useAuth()
 
 
     const query = collection(db, `pos`)
     const [docs, loading] = useCollectionData(query)
+
+
+    const cartq = collection(db, `carts/cart${cartId}/Products`)
+    const [cart, cartloading] = useCollectionData(cartq)
 
     const [Choosing, setChoosing] = useState(false)
     const [cartShown, setCartShown] = useState(false)
@@ -65,57 +73,68 @@ const PosContainer = () => {
             {
                 loading ? <Loading />
                     :
-                    currentUser.uid === AdminId ?
-                        <>
-                            {orderAnimation && <div className='orderDone-animation'><p className='orderDone-animation-txt'>Done</p></div>}
+                    <>
+                        {orderAnimation && <div onDoubleClick={() => setOrderAnimation(false)} className='orderDone-animation'>
+                            <p className='orderDone-animation-txt'>Done</p>
+                            <VscCheck className='check-animation-order-placed' />
+                        </div>}
 
 
-                            <div className='products_container'>
-                                <div className='pos_header-container'>
-                                    <div>
-                                        <h1 className='pos_name'>Spot <span className='pos_name-span'>IN</span> </h1>
-                                        <p className='pos_page'>Cashier System</p>
-                                    </div>
-                                    {
-                                        <button style={{ fontSize: "35px" }} className='show-cart-btn' onClick={showCart}>
-                                            {!cartShown ? <TbReceipt /> : <TbReceiptOff />}
-                                        </button>
-
-                                    }
-                                    {/* <div className='pos_filtering-group'>
-                                        <p className='pos_filtering-btn'>All</p>
-                                        <p className='pos_filtering-btn'>Fresh</p>
-                                        <p className='pos_filtering-btn'>Coffe</p>
-                                    </div> */}
-                                </div>
-                                {/* <div className='pos_filter-border'></div> */}
+                        <div className='products_container'>
+                            <div className='pos_header-container'>
                                 <div>
-                                    {Choosing ?
-                                        <Suspense fallback={
-                                            <div><Loading /></div>
-                                        }>
-                                            <ChooseUser
-                                                showCart={showCart}
-                                                onChoosingState={onChoosingState}
-                                            />
-                                        </Suspense>
-                                        :
-                                        <Products docs={docs} onAddToCart={onAddToCart} />
-                                    }
+                                    <div className='pos-logoMenu-container'>
+                                        <h1 className='pos_name'>Spot <span className='pos_name-span'>IN</span> </h1>
+                                    </div>
+                                    <p className='pos_page'>Cashier System</p>
                                 </div>
+                                {
+                                    <div className='pos-actions-div'>
+                                        <button className='open-user-in-pos' >
+                                            {!cartShown ? !Choosing ? <IoPersonAddSharp onClick={() => setChoosing(true)} className='pos_mb-add-user' /> : <TbArrowBack onClick={() => setChoosing(false)} className='pos_mb-add-user' /> : ""}
+                                        </button>
+                                        <Link className='orders-icon-link' to="/pos/open-orders"><FaReceipt className='orders-icon' /> </Link>
 
+                                        <button style={{ fontSize: "35px" }} className='show-cart-btn' onClick={showCart}>
+                                            {!cartShown ?
+                                                <div>
+                                                    <MdOutlineShoppingCart />
+                                                    {
+                                                        !cartloading && cart?.length > 0 ?
+                                                            <div className='pos_icon-item-qty'>{cart?.length}</div>
+                                                            : ""
+                                                    }
+                                                </div>
+                                                : <MdOutlineRemoveShoppingCart />}
+                                        </button>
+                                    </div>
+
+                                }
+                            </div>
+                            <div>
+                                {Choosing ?
+                                    <Suspense fallback={
+                                        <div><Loading /></div>
+                                    }>
+                                        <ChooseUser
+                                            onChoosingState={onChoosingState}
+                                        />
+                                    </Suspense>
+                                    :
+                                    <Products docs={docs} onAddToCart={onAddToCart} />
+                                }
                             </div>
 
-                            {
-                                <div id='pos_cart' className='pos_cart'>
-                                    <Suspense>
-                                        <Cart startAnimation={startAnimation} showCart={showCart} Choosing={Choosing} onChoosingState={onChoosingState} />
-                                    </Suspense>
-                                </div>
-                            }
-                        </>
-                        :
-                        <p>You don't have the right credentials to browse this page.</p>
+                        </div>
+
+                        {
+                            <div id='pos_cart' className='pos_cart'>
+                                <Suspense>
+                                    <Cart startAnimation={startAnimation} showCart={showCart} Choosing={Choosing} onChoosingState={onChoosingState} />
+                                </Suspense>
+                            </div>
+                        }
+                    </>
             }
         </div>
     )

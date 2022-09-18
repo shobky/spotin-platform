@@ -71,7 +71,7 @@ const CartItem = ({ products }) => {
                 </div>
             </div>
 
-            <input onChange={(note) => updateNote(note)} type="text" placeholder="Extras & Specifications" className="cart-item_plus-input" />
+            <input onChange={(note) => updateNote(note)} type="text" placeholder=" Specifications" className="cart-item_plus-input" />
         </div>
 
     )

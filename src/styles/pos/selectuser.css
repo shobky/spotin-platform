@@ -49,43 +49,44 @@
     .select-user_header {
         font-size: 25px;
         margin-bottom: 25px;
-        margin-left: -25px;
     }
+
     .select-user_container {
-        width: 70vw;
-        margin-left: 50px;
+        margin-left: 10px;
         top: 15px;
         position: relative;
     }
-    .select-user_input-search {
-        width: 75vw;
-        height: 30px;
-        font-size: 20px;
-        border: none;
-        border-bottom: 1px solid rgb(0, 174, 255);
+    .userList_user {
+        display: grid;
+        grid-template-columns: 20vw 50vw 30vw;
+        border-bottom: 1px solid whitesmoke;
+        padding: 10px;
+
     }
-    .select_user-user-list-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-top: 25px;
+
+    .userList_userid::before {
+        content: "#";
     }
-    .userList_user{
-        display: flex;
-        justify-content: space-between;
-        width: 55vw;
-        align-items: center;
-        font-size: 18px;
-    }
-    .userList_userid{
-        font-weight: bold;
-    }
+
     .userList_user:active {
-        color: rgb(0, 174, 255);
+        color: rgb(255, 139, 31);
         cursor: pointer;
     }
 
+    .user-list-header {
+        display: grid;
+        grid-template-columns: 20vw 50vw 30vw;
+        border-bottom: 1px solid whitesmoke;
+        border-top: 1px solid whitesmoke;
+        padding: 10px;
+
+
+
+        
+    }
+
 }
+
 .select-user_input-search:focus {
     outline: none;
 }

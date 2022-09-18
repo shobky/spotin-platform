@@ -77,7 +77,7 @@ export default function Signup() {
                 <form onSubmit={handleSubmit} className="auth_form">
                     <div className="nameandemaildiv" >
                         <div><label className="auth_label">Name </label>
-                            <input className="sign-up_auth_input auth_input auth_name-input" ref={nameRef} required name="name" type="text" /></div>
+                            <input className="sign-up_auth_input auth_input " ref={nameRef} required name="name" type="text" /></div>
 
                         <div><label className="auth_label">Email </label>
                             <input className="sign-up_auth_input auth_input" ref={emailRef} required name="email" type="email" /></div>

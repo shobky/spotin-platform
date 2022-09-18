@@ -1,3 +1,4 @@
+
 @media (min-width:951px) {
     /* .cart_cart-item-contaienr {
         height: 35vh;
@@ -19,7 +20,7 @@
     }
 
     .cart_place-btn {
-        background-color: rgb(66, 154, 255);
+        background-color: #fa800e;
         cursor: pointer;
         border: none;
         color: rgb(0, 0, 0);
@@ -32,13 +33,27 @@
 
     .cart_change-user {
         text-decoration: none;
-        font-size: 25px;
-        color: rgb(0, 162, 255);
-        position: relative;
-        top: 10px;
-        left: 70px;
+        font-size: 29px;
+        color: #fa800e;
+        position: absolute;
+        right: 20px;
         cursor: pointer;
 
+    }
+    .cart_change-user:hover {
+        font-size: 30px;
+        color: #d16703;
+    }
+    .cart_user-name-input{
+        border: none;
+        font-size: 20px;
+        border-bottom: 1px solid orange;
+        margin-left: 30px;
+        width: 65%;
+    }
+    .cart_user-name-input:focus{
+        outline: none;
+        border-bottom: 1px solid black;
     }
 }
 
@@ -46,7 +61,7 @@
 
 
     .cart_place-btn {
-        background-color: rgb(66, 154, 255);
+        background-color: #fa800e;
         cursor: pointer;
         border: none;
         color: rgb(0, 0, 0);
@@ -56,18 +71,22 @@
         font-size: 25px;
         color: white;
         font-weight: bold;
-        box-shadow: 0 0 15px 1px rgb(170, 158, 158);
+        box-shadow: 0px 0px 0px 2px rgb(226, 226, 226);
         border-radius: 25px;
     }
 
     .cart_change-user {
         text-decoration: none;
-        font-size: 25px;
-        color: rgb(0, 162, 255);
+        font-size: 27px;
+        color: #fa800e;
         position: absolute;
-        right: 0px;
+        right: 25px;
         cursor: pointer;
 
+    }
+    .cart_change-user:active {
+        font-size: 28px;
+        color: #d16703;
     }
     /* .cart_cart-item-contaienr {
         height: 28vh;
@@ -77,6 +96,17 @@
         padding-bottom: 25px;
         box-shadow: 0 0 10px 1 rgb(112, 112, 112);
     } */
+    .cart_user-name-input{
+        border: none;
+        font-size: 20px;
+        border-bottom: 1px solid orange;
+        margin-left: 30px;
+        width: 65%;
+    }
+    .cart_user-name-input:focus{
+        outline: none;
+        border-bottom: 1px solid black;
+    }
 }
 
 
@@ -90,7 +120,7 @@
     align-items: center;
     position: relative;
     margin-bottom: 25px;
-    top: -15px;
+    top: 5px;
     gap: 10px;
     padding-bottom: 10px;
     width: 80%;
@@ -99,15 +129,12 @@
 
 .cart_order-for {
     color: black;
-    font-size: 22px;
-}
+    font-size: 18px;
+    }
 
 
 
-.cart_change-user:hover {
-    font-size: 26px;
-    color: rgb(0, 137, 216);
-}
+
 
 .cart_order-date {
 
@@ -167,7 +194,7 @@
     color: rgb(0, 0, 0);
     margin-left: 25px;
     width: 85%;
-    border-bottom: 1px solid rgb(153, 153, 153);
+    border-bottom: 1px solid rgb(212, 209, 209);
 }
 
 .cart-item_plus-input:focus {
@@ -187,7 +214,7 @@
 
 
 .cart_place-btn:hover {
-    background-color: rgb(45, 136, 255);
+    background-color: #df6c00;
     border: 1px solid rgb(167, 167, 167);
 
 }

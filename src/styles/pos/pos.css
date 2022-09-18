@@ -1,4 +1,8 @@
 @media (min-width:1251px) {
+    .pos-actions-div {
+        display: none;
+    }
+
     .products_container {
         width: 62vw;
         padding: 50px;
@@ -10,45 +14,71 @@
         height: 78vh;
         overflow-y: scroll;
         margin-top: 32px;
-    }
-
-    .pos-parent-container {
-        background-color: #ffffff;
-        display: flex;
-        justify-content: space-between;
-        color: rgb(0, 0, 0);
-        height: 100vh;
-    }
-
-    .pos_name {
-        font-family: montserrat-black;
-        font-size: 40px;
-    }
-
-
-    .pos_page {
-        position: relative;
-        left: 40px;
-        color: #000000;
-        font-family: montserrat-light;
-    }
-
-    .pos_cart {
-        background-color: white;
-        max-width: 300px;
-        height: 100vh;
-        transition: ease-in-out .4s;
-
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
     }
 
     .show-cart-btn {
         display: none;
     }
 
+    .pos-menu {
+        display: none;
+    }
+
 
 }
 
+.pos-parent-container {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    color: rgb(0, 0, 0);
+    height: 100vh;
+}
+
+.pos_name {
+    font-family: montserrat-black;
+    font-size: 40px;
+}
+
+
+.pos_page {
+    position: relative;
+    left: 40px;
+    color: #000000;
+    font-family: montserrat-light;
+}
+
+.pos_cart {
+    background-color: white;
+    max-width: 300px;
+    height: 100vh;
+    transition: ease-in-out .4s;
+
+}
+
+
+.cart_cart-item-contaienr {
+    height: 35vh;
+    overflow-y: scroll;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    box-shadow: 0px 10px 15px -10px rgb(240, 244, 247);
+
+}
+
+
 @media (max-width:1250px) and (min-width:1001px) {
+    .pos-actions-div {
+        display: none;
+    }
+
+    .pos-menu {
+        display: none;
+    }
+
     .products_container {
         width: 57vw;
         padding: 50px;
@@ -60,6 +90,8 @@
         height: 78vh;
         overflow-y: scroll;
         margin-top: 32px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
 
     }
 
@@ -88,18 +120,30 @@
         display: none;
     }
 
+    .cart_cart-item-contaienr {
+        height: 35vh;
+        overflow-y: scroll;
+        margin-top: 25px;
+        margin-bottom: 30px;
+        padding-bottom: 25px;
+        box-shadow: 2px 10px 15px -10px rgb(200, 226, 255);
+
+    }
+
 }
 
 @media (max-width:950px) and (orientation: landscape) {
     .pos_products {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         margin-top: 10px;
         margin-left: 5vw;
         height: 80%;
         overflow-y: scroll;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
 
     }
+
     .pos_cart {
         position: absolute;
         left: -85vw;
@@ -108,7 +152,17 @@
         max-width: 300px;
         height: 100%;
         transition: ease-in-out .4s;
-        overflow-y: scroll ;
+        overflow-y: scroll;
+
+    }
+
+    .cart_cart-item-contaienr {
+        height: 35vh;
+        overflow-y: scroll;
+        margin-top: 25px;
+        margin-bottom: 30px;
+        padding-bottom: 25px;
+        box-shadow: 2px 10px 15px -10px rgb(200, 226, 255);
 
     }
 
@@ -118,12 +172,14 @@
 @media (max-width:950px) and (orientation: portrait) {
     .pos_products {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         margin-top: 30px;
         margin-left: 5vw;
         height: 80%;
         overflow-y: scroll;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
     }
+
     .pos_cart {
         position: absolute;
         left: -85vw;
@@ -138,8 +194,12 @@
 
 
 @media (max-width:1000px) and (min-width:951px) {
+    .pos-menu {
+        display: none;
+    }
+
     .products_container {
-        width: 45vw;
+        width: 55vw;
         padding: 50px;
         margin-left: 7vw;
 
@@ -150,6 +210,8 @@
         height: 78vh;
         overflow-y: scroll;
         margin-top: 32px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 
     }
 
@@ -182,6 +244,56 @@
 }
 
 @media (max-width:950px) {
+    .pos_icon-item-qty {
+        position: absolute;
+        top: 16px;
+        font-size: 10px;
+        color: white;
+        right: -12px;
+        background-color: rgb(255, 0, 0);
+        width: 18px;
+        border-radius: 50%;
+        height: 18px;
+        font-size: 15px;
+    }
+
+    .pos-logoMenu-container {
+        display: flex;
+    }
+
+    .pos-actions-div {
+        display: flex;
+        position: relative;
+        column-gap: 10px;
+    }
+
+    .open-user-in-pos {
+        background-color: transparent;
+        border: none;
+        color: black;
+        font-size: 35px;
+    }
+
+    .open-user-in-pos:hover {
+        color: rgb(51, 139, 255);
+
+    }
+
+    .orders-icon {
+        font-size: 32px;
+        position: relative;
+        top: 25px;
+        color: black;
+    }
+
+    .orders-icon:hover {
+        color: rgb(51, 139, 255);
+    }
+
+    .pos_products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 
     .pos-parent-container {
         background-color: #ffffff;
@@ -201,13 +313,13 @@
     .pos_name {
         font-family: montserrat-black;
         font-size: 40px;
-        margin-left: 50px;
+        margin-left: 10px;
         margin-top: 15px;
     }
 
     .pos_page {
         position: relative;
-        left: 90px;
+        left: 50px;
         color: #000000;
         font-family: montserrat-light;
     }
@@ -229,10 +341,9 @@
     .cart_cart-item-contaienr {
         height: 35vh;
         overflow-y: scroll;
-        margin-top: -25px;
+        margin-top: 25px;
         margin-bottom: 30px;
         padding-bottom: 25px;
-        box-shadow: 2px 10px 15px -10px rgb(200, 226, 255);
 
     }
 
@@ -266,10 +377,18 @@
 
 }
 
-.pos_products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-}
+/* @media (max-width:600px) {
+    .orders-icon{
+        width: 30px;
+        position: absolute;
+        top: 65px;
+        right: -5px;
+    }
+
+
+
+} */
+
 
 .pos_header-container {
     display: flex;
@@ -305,5 +424,9 @@
     font-weight: lighter;
     position: relative;
     left: -5px;
+    font-size: 35px;
+}
+.check-animation-order-placed{
+    margin-top: 30px;
     font-size: 35px;
 }
