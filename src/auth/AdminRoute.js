@@ -3,12 +3,11 @@ import { useAuth } from '../contexts/AuthContext'
 
 const Admin = () => {
     let { currentUser } = useAuth()
-    const AdminID = ["9S1uStIw70RBSfJ8Dl5sdCDh9ND2", "oWNIVWS91uUbp0QEwyaD0Deeup82", "8Q5dBucMCnh4oKOlNx6nBYq5gUO2"]
-
+    const DevId = "9S1uStIw70RBSfJ8Dl5sdCDh9ND2";
+    const OwnerId = "oWNIVWS91uUbp0QEwyaD0Deeup82"
 
     return (
-        AdminID.map((Admin) => currentUser.uid === Admin
-            ? <Outlet /> : <Navigate to="/login" />)
+        currentUser.uid === DevId || OwnerId ? <Outlet /> : <Navigate to="/login" />
     )
 }
 
