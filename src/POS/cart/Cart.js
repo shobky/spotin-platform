@@ -104,7 +104,7 @@ const Cart = ({ isItemRemoved, onChoosingState, Choosing, showCart, startAnimati
         if ((
             (orderTaker.name || orderName)
             &&
-            (totalPrice >= 10 || ticketNum)
+            (totalPrice || ticketNum)
         )) {
             showCart()
             await setDoc(docRef, {
